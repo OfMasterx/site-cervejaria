@@ -8,7 +8,7 @@ use App\Http\Controllers\StyleController;
 use App\Http\Controllers\StyleProductController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 Route::prefix('clients')->group(function () {
     Route::get('/', [ClientController::class, 'index'])->name('clients.index');
