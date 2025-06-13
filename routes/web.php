@@ -7,8 +7,21 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StyleController;
 use App\Http\Controllers\StyleProductController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\ClientStyleController;
+use App\Http\Controllers\CartController;
 
 Route::get('/', [HomePageController::class, 'index'])->name('home');
+Route::get('/estilos', [ClientStyleController::class, 'index'])->name('styles.list');
+Route::get('/estilos/{style}', [ClientStyleController::class, 'show'])->name('styles.show');
+
+// Cart routes
+Route::prefix('cart')->group(function () {
+    Route::get('/', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/add', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/update', [CartController::class, 'update'])->name('cart.update');
+    Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
+});
 
 Route::get('/admin', function () {
     return view('index');

@@ -49,6 +49,7 @@
         </div>
     </div>
     @include('footer')
+    @include('components.cart-modal')
     @vite('resources/js/app.js')
 </body>
 
