@@ -13,6 +13,6 @@ class HomePageController extends Controller
         $events = Event::latest()->limit(6)->get();
         $products = Product::with('style')->latest()->limit(6)->get();
         
-        return view('admin.home', compact('events', 'products'));
+        return view('welcome', compact('events', 'products'));
     }
 }
