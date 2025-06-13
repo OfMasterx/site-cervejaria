@@ -17,6 +17,11 @@ class Event extends Model
         'date',
         'image',
     ];
+    
+    protected $casts = [
+        'date' => 'datetime',
+    ];
+    
     public $incrementing = false;
     protected $keyType = 'string';
 

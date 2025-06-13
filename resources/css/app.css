@@ -1,11 +1,219 @@
-@import 'tailwindcss';
+/* ---------- Design tokens (single source of truth) ---------- */
+:root {
+    --card-radius : 0.75rem;              /* 12 px */
+    --card-gap    : 1.5rem;               /* 24 px */
+    --card-shadow : 0 4px 14px rgba(0,0,0,.12);
+}
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+/* ---------- Bootstrap overrides via simple selectors ---------- */
+.card {
+    border-radius: var(--card-radius) !important;
+    box-shadow   : var(--card-shadow);
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+/* Optional gap-utility that matches Figma's 24 px */
+.g-card-gap {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: var(--card-gap);
+}
+
+/* Grid layout for product cards */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--card-gap);
+    align-items: stretch;
+}
+
+.cards-grid .card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hero Banner Styles */
+.hero-banner {
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+    padding: 4rem 0;
+    margin-bottom: 3rem;
+}
+
+.min-vh-50 {
+    min-height: 50vh;
+}
+
+.placeholder-hero {
+    padding: 3rem;
+    background: white;
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+}
+
+/* Events Grid */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--card-gap);
+}
+
+.event-card {
+    background: white;
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+}
+
+.event-image, .event-image-placeholder {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.event-image-placeholder {
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #6c757d;
+}
+
+.event-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-title {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.event-description {
+    color: #6c757d;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.event-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.event-meta i {
+    margin-right: 0.25rem;
+}
+
+.event-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--card-gap);
+}
+
+.product-card {
+    background: white;
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+}
+
+.product-image, .product-image-placeholder {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.product-image-placeholder {
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #6c757d;
+}
+
+.product-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+    margin-bottom: 0.25rem;
+    font-size: 1.25rem;
+}
+
+.product-style {
+    color: #6c757d;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-description {
+    color: #495057;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.product-price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.product-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .hero-banner {
+        padding: 2rem 0;
+    }
+    
+    .event-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 }

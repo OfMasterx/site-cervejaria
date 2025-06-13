@@ -6,10 +6,13 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StyleController;
 use App\Http\Controllers\StyleProductController;
+use App\Http\Controllers\HomePageController;
 
-Route::get('/', function () {
+Route::get('/', [HomePageController::class, 'index'])->name('home');
+
+Route::get('/admin', function () {
     return view('index');
-});
+})->name('admin.home');
 Route::prefix('clients')->group(function () {
     Route::get('/', [ClientController::class, 'index'])->name('clients.index');
     Route::get('/create', [ClientController::class, 'create'])->name('clients.create');

@@ -1,0 +1,11 @@
+/* Expose tokens first so Sass variables can reference them */
+:root {
+    --card-radius : 0.75rem;
+    --card-shadow : 0 4px 14px rgba(0,0,0,.12);
+}
+
+/* Override Bootstrap Sass variables BEFORE the import */
+$card-border-radius: var(--card-radius);
+$card-box-shadow   : var(--card-shadow);
+
+@import "bootstrap/scss/bootstrap";
